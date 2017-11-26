@@ -18,6 +18,12 @@ app.use(function (req, res, next) {
 
 var port = Number(process.env.PORT || 3000);
 
+app.get('/', function (req, res) {
+    dbconnection.getBtc(function (btcRes) {
+        res.send("asdasdasd");
+    });
+});
+
 app.get('/api/btc', function (req, res) {
     dbconnection.getBtc(function (btcRes) {
         res.send(btcRes);
