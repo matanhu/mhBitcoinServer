@@ -24,14 +24,16 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/api/btc', function (req, res) {
-    dbconnection.getBtc(function (btcRes) {
+app.get('/api/btc/:startRowNumber', function (req, res) {
+    var startRowNumber = parseInt(req.params['startRowNumber']);
+    dbconnection.getBtc(startRowNumber, function (btcRes) {
         res.send(btcRes);
     });
 });
 
-app.get('/api/bch', function (req, res) {
-    dbconnection.getBch(function (bchRes) {
+app.get('/api/bch/:startRowNumber', function (req, res) {
+    var startRowNumber = parseInt(req.params['startRowNumber']);
+    dbconnection.getBch(startRowNumber, function (bchRes) {
         res.send(bchRes);
     });
 });
