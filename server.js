@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
 var port = Number(process.env.PORT || 3000);
 
 app.get('/', function (req, res) {
-    dbconnection.getBtc(function (btcRes) {
+    dbconnection.getBtc(0, function (btcRes) {
         res.send("asdasdasd");
     });
 });
