@@ -60,7 +60,7 @@ function getBtc(startRowNumber, callback) {
                     btc: rows
                 }
                 console.error("getBtc: " + error);
-                callback(project);
+                callback(res);
             } else {
                 var res = {
                     isSuccess: true,
@@ -83,7 +83,7 @@ function getBch(startRowNumber, callback) {
                     btc: rows
                 }
                 console.error("getBtc: " + error);
-                callback(project);
+                callback(res);
             } else {
                 var res = {
                     isSuccess: true,
