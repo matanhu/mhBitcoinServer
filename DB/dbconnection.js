@@ -80,14 +80,14 @@ function getBch(startRowNumber, callback) {
             if (!!error) {
                 var res = {
                     isSuccess: false,
-                    btc: rows
+                    bch: rows
                 }
                 console.error("getBtc: " + error);
                 callback(res);
             } else {
                 var res = {
                     isSuccess: true,
-                    btc: rows
+                    bch: rows
                 }
                 callback(res);
             }
