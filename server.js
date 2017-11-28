@@ -38,5 +38,12 @@ app.get('/api/bch/:startRowNumber', function (req, res) {
     });
 });
 
+app.get('/api/ltc/:startRowNumber', function (req, res) {
+    var startRowNumber = parseInt(req.params['startRowNumber']);
+    dbconnection.getLtc(startRowNumber, function (ltcRes) {
+        res.send(ltcRes);
+    });
+});
+
 console.log(port);
 app.listen(port);

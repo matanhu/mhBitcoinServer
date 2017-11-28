@@ -95,6 +95,30 @@ function getBch(startRowNumber, callback) {
     );
 }
 
+function getLtc(startRowNumber, callback) {
+    // dbConnection.connectDB('SELECT * FROM BagPlot.Project;', 
+    connectDB(`SELECT * FROM b2c_ltc order by date desc limit ?, ?;`,
+        [startRowNumber, startRowNumber + 100],
+        function (error, rows, fields) {
+            if (!!error) {
+                var res = {
+                    isSuccess: false,
+                    ltc: rows
+                }
+                console.error("getBtc: " + error);
+                callback(res);
+            } else {
+                var res = {
+                    isSuccess: true,
+                    ltc: rows
+                }
+                callback(res);
+            }
+        }
+    );
+}
+
 module.exports.connectDB = connectDB;
 module.exports.getBtc = getBtc;
 module.exports.getBch = getBch;
+module.exports.getLtc = getLtc;
