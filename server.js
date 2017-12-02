@@ -1,9 +1,10 @@
 var express = require('express');
-var mysql = require('mysql');
+// var mysql = require('mysql');
 var bodyParser = require("body-parser");
 var app = express();
 
-var dbconnection = require('./DB/dbconnection');
+// var dbconnection = require('./DB/dbconnection');
+var rates = require('./Factories/Rates');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -26,24 +27,64 @@ app.get('/', function (req, res) {
 
 app.get('/api/btc/:startRowNumber', function (req, res) {
     var startRowNumber = parseInt(req.params['startRowNumber']);
-    dbconnection.getBtc(startRowNumber, function (btcRes) {
+    // dbconnection.getBtc(startRowNumber, function (btcRes) {
+    //     res.send(btcRes);
+    // });
+    rates.getRates('BTC', startRowNumber).then((snapshot) => {
+        var btcRes = {
+            isSuccess: true,
+            btc: snapshotToArray(snapshot)
+        }
         res.send(btcRes);
+    }, (err) => {
+        console.error('/api/btc/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
     });
 });
 
 app.get('/api/bch/:startRowNumber', function (req, res) {
     var startRowNumber = parseInt(req.params['startRowNumber']);
-    dbconnection.getBch(startRowNumber, function (bchRes) {
-        res.send(bchRes);
+    // dbconnection.getBch(startRowNumber, function (bchRes) {
+    //     res.send(bchRes);
+    // });
+    rates.getRates('BCH', startRowNumber).then((snapshot) => {
+        var bchRes = {
+            isSuccess: true,
+            bch: snapshotToArray(snapshot)
+        }
+        bchRes.send(res);
+    }, (err) => {
+        console.error('/api/bch/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
     });
 });
 
 app.get('/api/ltc/:startRowNumber', function (req, res) {
     var startRowNumber = parseInt(req.params['startRowNumber']);
-    dbconnection.getLtc(startRowNumber, function (ltcRes) {
-        res.send(ltcRes);
+    // dbconnection.getLtc(startRowNumber, function (ltcRes) {
+    //     res.send(ltcRes);
+    // });
+    rates.getRates('LTC', startRowNumber).then((snapshot) => {
+        var ltcRes = {
+            isSuccess: true,
+            ltc: snapshotToArray(snapshot)
+        }
+        ltcRes.send(res);
+    }, (err) => {
+        console.error('/api/ltc/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
     });
 });
+
+function snapshotToArray(snapshot) {
+    var returnArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        returnArr.push(item);
+    });
+
+    return returnArr;
+};
 
 console.log(port);
 app.listen(port);
