@@ -51,7 +51,7 @@ app.get('/api/bch/:startRowNumber', function (req, res) {
             isSuccess: true,
             bch: snapshotToArray(snapshot)
         }
-        bchRes.send(res);
+        res.send(res);
     }, (err) => {
         console.error('/api/bch/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
     });
@@ -67,7 +67,7 @@ app.get('/api/ltc/:startRowNumber', function (req, res) {
             isSuccess: true,
             ltc: snapshotToArray(snapshot)
         }
-        ltcRes.send(res);
+        res.send(res);
     }, (err) => {
         console.error('/api/ltc/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
     });
