@@ -73,6 +73,22 @@ app.get('/api/ltc/:startRowNumber', function (req, res) {
     });
 });
 
+app.get('/api/btg/:startRowNumber', function (req, res) {
+    var startRowNumber = parseInt(req.params['startRowNumber']);
+    // dbconnection.getLtc(startRowNumber, function (ltcRes) {
+    //     res.send(ltcRes);
+    // });
+    rates.getRates('BTG', startRowNumber).then((snapshot) => {
+        var btgRes = {
+            isSuccess: true,
+            btg: snapshotToArray(snapshot)
+        }
+        res.send(btgRes);
+    }, (err) => {
+        console.error('/api/btg/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
+    });
+});
+
 function snapshotToArray(snapshot) {
     var returnArr = [];
 
