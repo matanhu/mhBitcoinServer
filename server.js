@@ -25,67 +25,67 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/api/btc/:startRowNumber', function (req, res) {
-    var startRowNumber = parseInt(req.params['startRowNumber']);
-    // dbconnection.getBtc(startRowNumber, function (btcRes) {
+app.get('/api/btc/:startKey', function (req, res) {
+    var startKey = parseInt(req.params['startKey']);
+    // dbconnection.getBtc(startKey, function (btcRes) {
     //     res.send(btcRes);
     // });
-    rates.getRates('BTC', startRowNumber).then((snapshot) => {
+    rates.getRates('BTC', startKey).then((snapshot) => {
         var btcRes = {
             isSuccess: true,
             btc: snapshotToArray(snapshot)
         }
         res.send(btcRes);
     }, (err) => {
-        console.error('/api/btc/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
+        console.error('/api/btc/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 
-app.get('/api/bch/:startRowNumber', function (req, res) {
-    var startRowNumber = parseInt(req.params['startRowNumber']);
-    // dbconnection.getBch(startRowNumber, function (bchRes) {
+app.get('/api/bch/:startKey', function (req, res) {
+    var startKey = parseInt(req.params['startKey']);
+    // dbconnection.getBch(startKey, function (bchRes) {
     //     res.send(bchRes);
     // });
-    rates.getRates('BCH', startRowNumber).then((snapshot) => {
+    rates.getRates('BCH', startKey).then((snapshot) => {
         var bchRes = {
             isSuccess: true,
             bch: snapshotToArray(snapshot)
         }
         res.send(bchRes);
     }, (err) => {
-        console.error('/api/bch/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
+        console.error('/api/bch/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 
-app.get('/api/ltc/:startRowNumber', function (req, res) {
-    var startRowNumber = parseInt(req.params['startRowNumber']);
-    // dbconnection.getLtc(startRowNumber, function (ltcRes) {
+app.get('/api/ltc/:startKey', function (req, res) {
+    var startKey = parseInt(req.params['startKey']);
+    // dbconnection.getLtc(startKey, function (ltcRes) {
     //     res.send(ltcRes);
     // });
-    rates.getRates('LTC', startRowNumber).then((snapshot) => {
+    rates.getRates('LTC', startKey).then((snapshot) => {
         var ltcRes = {
             isSuccess: true,
             ltc: snapshotToArray(snapshot)
         }
         res.send(ltcRes);
     }, (err) => {
-        console.error('/api/ltc/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
+        console.error('/api/ltc/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 
-app.get('/api/btg/:startRowNumber', function (req, res) {
-    var startRowNumber = parseInt(req.params['startRowNumber']);
-    // dbconnection.getLtc(startRowNumber, function (ltcRes) {
+app.get('/api/btg/:startKey', function (req, res) {
+    var startKey = parseInt(req.params['startKey']);
+    // dbconnection.getLtc(startKey, function (ltcRes) {
     //     res.send(ltcRes);
     // });
-    rates.getRates('BTG', startRowNumber).then((snapshot) => {
+    rates.getRates('BTG', startKey).then((snapshot) => {
         var btgRes = {
             isSuccess: true,
             btg: snapshotToArray(snapshot)
         }
         res.send(btgRes);
     }, (err) => {
-        console.error('/api/btg/:startRowNumber Error: ' + err + ' ' + 'startRowNumber: ' + startRowNumber + ' ' + new Date());
+        console.error('/api/btg/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 

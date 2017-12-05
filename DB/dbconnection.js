@@ -49,10 +49,10 @@ function connectDB(query, values, callback) {
     }
 }
 
-function getBtc(startRowNumber, callback) {
+function getBtc(startKey, callback) {
     // dbConnection.connectDB('SELECT * FROM BagPlot.Project;', 
     connectDB(`SELECT * FROM b2c_btc order by date desc limit ?, ?;`,
-        [startRowNumber, startRowNumber + 100],
+        [startKey, startKey + 100],
         function (error, rows, fields) {
             if (!!error) {
                 var res = {
@@ -72,10 +72,10 @@ function getBtc(startRowNumber, callback) {
     );
 }
 
-function getBch(startRowNumber, callback) {
+function getBch(startKey, callback) {
     // dbConnection.connectDB('SELECT * FROM BagPlot.Project;', 
     connectDB(`SELECT * FROM b2c_bch order by date desc limit ?, ?;`,
-        [startRowNumber, startRowNumber + 100],
+        [startKey, startKey + 100],
         function (error, rows, fields) {
             if (!!error) {
                 var res = {
@@ -95,10 +95,10 @@ function getBch(startRowNumber, callback) {
     );
 }
 
-function getLtc(startRowNumber, callback) {
+function getLtc(startKey, callback) {
     // dbConnection.connectDB('SELECT * FROM BagPlot.Project;', 
     connectDB(`SELECT * FROM b2c_ltc order by date desc limit ?, ?;`,
-        [startRowNumber, startRowNumber + 100],
+        [startKey, startKey + 100],
         function (error, rows, fields) {
             if (!!error) {
                 var res = {

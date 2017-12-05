@@ -1,8 +1,11 @@
 
 var firebase = require('../DB/firebase');
 
-function getRates(currencyName, startRowNumber) {
-    return firebase.database().ref(currencyName).orderByChild('order').once('value');
+function getRates(currencyName, startKey) {
+    if(startKey !== 0) {
+        return firebase.database().ref(currencyName).orderByChild('order').startAt(startKey).limitToFirst(30).once('value');    
+    }
+    return firebase.database().ref(currencyName).orderByChild('order').limitToFirst(30).once('value');
 }
 
 
