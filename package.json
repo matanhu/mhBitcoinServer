@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.5.0",
+    "bit2c": "0.0.6",
     "express": "^4.16.1",
     "firebase": "^4.7.0",
     "mysql": "^2.15.0",

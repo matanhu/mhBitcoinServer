@@ -5,6 +5,7 @@ var app = express();
 
 // var dbconnection = require('./DB/dbconnection');
 var rates = require('./Factories/Rates');
+var bit2c = require('./Factories/Bit2c');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,7 +26,7 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/api/btc/:startKey', function (req, res) {
+app.get('/api/bit2c/btc/:startKey', function (req, res) {
     var startKey = parseInt(req.params['startKey']);
     // dbconnection.getBtc(startKey, function (btcRes) {
     //     res.send(btcRes);
@@ -37,11 +38,11 @@ app.get('/api/btc/:startKey', function (req, res) {
         }
         res.send(btcRes);
     }, (err) => {
-        console.error('/api/btc/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
+        console.error('/api/bit2c/btc/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 
-app.get('/api/bch/:startKey', function (req, res) {
+app.get('/api/bit2c/bch/:startKey', function (req, res) {
     var startKey = parseInt(req.params['startKey']);
     // dbconnection.getBch(startKey, function (bchRes) {
     //     res.send(bchRes);
@@ -53,11 +54,11 @@ app.get('/api/bch/:startKey', function (req, res) {
         }
         res.send(bchRes);
     }, (err) => {
-        console.error('/api/bch/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
+        console.error('/api/bit2c/bch/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 
-app.get('/api/ltc/:startKey', function (req, res) {
+app.get('/api/bit2c/ltc/:startKey', function (req, res) {
     var startKey = parseInt(req.params['startKey']);
     // dbconnection.getLtc(startKey, function (ltcRes) {
     //     res.send(ltcRes);
@@ -69,11 +70,11 @@ app.get('/api/ltc/:startKey', function (req, res) {
         }
         res.send(ltcRes);
     }, (err) => {
-        console.error('/api/ltc/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
+        console.error('/api/bit2c/ltc/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
 });
 
-app.get('/api/btg/:startKey', function (req, res) {
+app.get('/api/bit2c/btg/:startKey', function (req, res) {
     var startKey = parseInt(req.params['startKey']);
     // dbconnection.getLtc(startKey, function (ltcRes) {
     //     res.send(ltcRes);
@@ -85,8 +86,18 @@ app.get('/api/btg/:startKey', function (req, res) {
         }
         res.send(btgRes);
     }, (err) => {
-        console.error('/api/btg/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
+        console.error('/api/bit2c/btg/:startKey Error: ' + err + ' ' + 'startKey: ' + startKey + ' ' + new Date());
     });
+});
+
+app.get('/api/bit2c/getBalace', function(req, res) {
+    bit2c.getBalance().then(
+        (balance) => {
+            res.send(balance);
+        }, (error) => {
+            console.error('/api/bit2c/getBalace Error: ' + error);
+            res.status(500).send('Something broke!');
+        });
 });
 
 function snapshotToArray(snapshot) {
