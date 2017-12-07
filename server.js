@@ -103,7 +103,7 @@ app.get('/api/bit2c/getBalace', function(req, res) {
 app.get('/api/getNotifications', function(req, res){
     rates.getNotifications().then(
         (Notifications) => {
-            res.send(Notifications);
+            res.send(snapshotToArray(Notifications));
         }, (error) => {
             console.error('/api/getNotifications Error: ' + error);
             res.status(500).send('Something broke!');
