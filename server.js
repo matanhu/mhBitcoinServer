@@ -100,6 +100,40 @@ app.get('/api/bit2c/getBalace', function(req, res) {
         });
 });
 
+app.get('/api/bit2c/myOrders', function(req, res) {
+    bit2c.myOrders().then(
+        (myOrders) => {
+            res.send(myOrders);
+        }, (error) => {
+            console.error('/api/bit2c/myOrders Error: ' + error);
+            res.status(500).send('Something broke!');
+        });
+});
+
+app.post('/api/bit2c/cancelOrder', function(req, res) {
+    var orderId = req.body.orderId;
+    bit2c.cancelOrder(orderId).then(
+        (cancelRes) => {
+            res.send(cancelRes);
+        }, (error) => {
+            console.error('/api/bit2c/cancelOrder Error: ' + error);
+            console.error('/api/bit2c/cancelOrder orderId: ' + orderId);
+            res.status(500).send('Something broke!');
+        });
+});
+
+app.post('/api/bit2c/addOrder', function(req, res) {
+    var order = req.body.order;
+    bit2c.addOrder(order).then(
+        (orderRes) => {
+            res.send(orderRes);
+        }, (error) => {
+            console.error('/api/bit2c/addOrder Error: ' + error);
+            console.error('/api/bit2c/addOrder orderId: ' + order);
+            res.status(500).send('Something broke!');
+        });
+});
+
 app.get('/api/getNotifications', function(req, res){
     rates.getNotifications().then(
         (Notifications) => {
