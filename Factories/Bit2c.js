@@ -1,8 +1,8 @@
 var bit2c = require('bit2c');
 
 var credentials = {
-    key: 'cb2aaa80-702e-40a1-a9a6-c5a80d0f8bd4',
-    secret: 'CBFD22E1BFADA923DB4BA569F57E1636CDF4B5707AEB295B29776FF1F4FE8911'
+    key: '<KEY>',
+    secret: '<Secret>'
 }
 
 var pairList = ['BtcNis', 'BchNis', 'LtcNis', 'BcgNis'];
